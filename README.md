@@ -1,4 +1,4 @@
-# MyAppMarina BackEnd SpringBoot Java 8
+# BackEnd SpringBoot Java 8
 
 This project was generated with [SpringBoot](https://spring.io/projects/spring-boot/) version 2
 
@@ -41,6 +41,4 @@ or in <br />
 [Swagger direct](http://localhost:5055/swagger-ui/index.html#/)<br />
 
 
-## Further help
 
-talk to me  https://www.linkedin.com/in/marina-oliveira-395720160/

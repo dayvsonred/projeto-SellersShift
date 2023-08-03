@@ -21,7 +21,7 @@ import java.util.UUID;
 @Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-@Table(schema = "todo", name = "TB_TODO")
+@Table(schema = "core", name = "TB_TODO")
 public class Todo {
 
     @Id

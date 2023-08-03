@@ -33,9 +33,22 @@ public class LoginService {
                         "ERROR User email already exists in DB  with email: " + userDto.getEmail());
             }
             String password = bCryptPasswordEncoder.encode(userDto.getPassword());
-            User userPreLoad = new User(userDto.getName(),userDto.getEmail(),password);
+            User userPreLoad = new User(
+                    userDto.getName(),
+                    userDto.getEmail(),
+                    password,
+                    userDto.getLatitude(),
+                    userDto.getLongitude(),
+                    userDto.getOffshoot(),
+                    userDto.getCpf()
+            );
             User user = userRepository.save(userPreLoad);
             user.setPassword("******");
+
+            log.info("#$%#$% add send to fila para validar email emviando para usuario ");
+            log.info("#$%#$% add send to fila para validar email e cpf");
+            log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
+
             return user;
         }catch (ResponseStatusException e){
             log.error(e.getMessage());

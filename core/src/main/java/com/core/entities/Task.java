@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(schema = "todo", name = "TB_TASK")
+@Table(schema = "core", name = "TB_TASK")
 public class Task implements Serializable {
 
     @Id

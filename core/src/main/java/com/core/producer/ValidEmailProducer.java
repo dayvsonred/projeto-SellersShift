@@ -20,7 +20,6 @@ public class ValidEmailProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-
     public void sendMessage(UserDto message){
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
         try {

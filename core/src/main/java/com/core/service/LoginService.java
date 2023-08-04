@@ -2,6 +2,7 @@ package com.core.service;
 
 import com.core.dto.UserDto;
 import com.core.entities.User;
+import com.core.producer.ValidEmailProducer;
 import com.core.repositories.UserRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class LoginService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private ValidEmailProducer validEmailProducer;
 
     public User createNewUser(UserDto userDto){
         try{
@@ -45,9 +47,8 @@ public class LoginService {
             User user = userRepository.save(userPreLoad);
             user.setPassword("******");
 
-            log.info("#$%#$% add send to fila para validar email emviando para usuario ");
-            log.info("#$%#$% add send to fila para validar email e cpf");
             log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
+            this.validEmailProducer.sendMessage(userDto);
 
             return user;
         }catch (ResponseStatusException e){

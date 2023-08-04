@@ -26,6 +26,7 @@ public class UserDetails implements Serializable {
 	private String emailValid;
 	private String cpfValid;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 }

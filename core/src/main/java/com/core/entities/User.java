@@ -38,7 +38,7 @@ public class User implements Serializable {
 	)
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
 	private UserDetails userDetails;
 	
 	public User() {

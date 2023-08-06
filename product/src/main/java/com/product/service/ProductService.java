@@ -1,9 +1,10 @@
 package com.product.service;
 
+import com.product.dto.ProductDto;
 import com.product.dto.UserDto;
-import com.product.entities.User;
+import com.product.entities.Product;
 import com.product.producer.ValidEmailProducer;
-import com.product.repositories.UserRepository;
+import com.product.repositories.ProductRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,39 +19,23 @@ import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
-public class LoginService {
+public class ProductService {
 
     @Autowired
-    private UserRepository userRepository;
+    private ProductRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ValidEmailProducer validEmailProducer;
 
-    public User createNewUser(UserDto userDto){
+    public Product create(ProductDto productDto){
         try{
-            log.info("Begin create new user {}", userDto.getEmail());
-            if(!isValidateNewUser(userDto)){
-                throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
-                        "ERROR User email already exists in DB  with email: " + userDto.getEmail());
-            }
-            String password = bCryptPasswordEncoder.encode(userDto.getPassword());
-            User userPreLoad = new User(
-                    userDto.getName(),
-                    userDto.getEmail(),
-                    password,
-                    userDto.getLatitude(),
-                    userDto.getLongitude(),
-                    userDto.getOffshoot(),
-                    userDto.getCpf()
+            log.info("Begin create new user {}", productDto.getName());
+            Product product = new Product(
+                    null,
+                    productDto.getUser()
             );
-            User user = userRepository.save(userPreLoad);
-            user.setPassword("******");
-
-            log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
-            this.validEmailProducer.sendMessage(userDto);
-
-            return user;
+            return  userRepository.save(product);
         }catch (ResponseStatusException e){
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,

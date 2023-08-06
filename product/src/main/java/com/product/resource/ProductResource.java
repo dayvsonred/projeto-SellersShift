@@ -1,8 +1,7 @@
 package com.product.resource;
 
 import com.product.dto.UserDto;
-import com.product.entities.User;
-import com.product.service.LoginService;
+import com.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +11,11 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/login")
-public class LoginResource {
+@RequestMapping(value = "/Product")
+public class ProductResource {
 
     @Autowired
-    LoginService loginService;
+    ProductService loginService;
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody @Valid UserDto userDto) {

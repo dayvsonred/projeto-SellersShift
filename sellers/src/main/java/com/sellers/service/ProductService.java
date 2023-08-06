@@ -1,11 +1,10 @@
-package com.product.service;
+package com.sellers.service;
 
-import com.product.dto.ProductDto;
-import com.product.dto.UserDto;
-import com.product.entities.Images;
-import com.product.entities.Product;
-import com.product.producer.ValidEmailProducer;
-import com.product.repositories.ProductRepository;
+import com.sellers.dto.ProductDto;
+import com.sellers.dto.UserDto;
+import com.sellers.entities.Product;
+import com.sellers.producer.ValidEmailProducer;
+import com.sellers.repositories.ProductRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
-
-import static java.util.Objects.isNull;
 
 @Slf4j
 @Service
@@ -40,7 +33,6 @@ public class ProductService {
         try{
             log.info("Begin create new user {}", token);
             UserDto user = this.oauthService.getUserByToken(token);
-            // add msg to fila de vendar para add produtos em estoque
             return this.productRepository.save(Product.builder()
                             .name(productDto.getName())
                             .type(productDto.getType())
@@ -53,7 +45,6 @@ public class ProductService {
                             .images(productDto.getImages())
                             .start(LocalDateTime.now())
                             .units(productDto.getUnits())
-                            .sold(0l)
                             .amount(productDto.getAmount())
                             .description(productDto.getDescription())
                     .build());

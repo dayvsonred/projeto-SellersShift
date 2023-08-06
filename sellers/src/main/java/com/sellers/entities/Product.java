@@ -1,4 +1,4 @@
-package com.product.entities;
+package com.sellers.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,12 +27,11 @@ public class Product {
     private Boolean active;
     private UUID user;
     private String offshoot;
-    private Long views;
+    private Integer views;
     private String latitude;
     private String longitude;
     private BigDecimal amount;
-    private Long units;
-    private Long sold;
+    private Integer units;
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")

@@ -1,13 +1,11 @@
-package com.product.entities;
+package com.sellers.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -16,30 +14,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "TB_PRODUCT", schema = "product")
-public class Product {
+@Table(name = "TB_IMAGE", schema = "product")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String name;
-    private String type;
-    private Boolean active;
+
+    private String comment;
     private UUID user;
-    private String offshoot;
-    private Long views;
-    private String latitude;
-    private String longitude;
-    private BigDecimal amount;
-    private Long units;
-    private Long sold;
-    private String description;
+    private Boolean active;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-    private List<Images> images;
-
-    @Column(name = "start_date", nullable = false)
-    private LocalDateTime start;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
@@ -48,4 +36,5 @@ public class Product {
     @LastModifiedDate
     @Column(name = "last_updated_date", nullable = false)
     private LocalDateTime lastUpdatedDate;
+
 }

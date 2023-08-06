@@ -1,13 +1,8 @@
-package com.product.dto;
+package com.sellers.dto;
 
-import com.product.entities.Images;
+import com.sellers.entities.Images;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,10 +22,9 @@ public class ProductDto {
     private UUID user;
     private String offshoot;
     private BigDecimal amount;
-    private Long units;
-    private Long sold;
+    private Integer units;
     private String description;
-    private Long views;
+    private Integer views;
     private String latitude;
     private String longitude;
     private List<Images> images;

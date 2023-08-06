@@ -1,11 +1,11 @@
 server:
-#  port: 5065
+#  port: 5085
 #  error:
 #    include-stacktrace: NEVER
 #  port: ${PORT:5055}
 spring:
   application:
-    name: product
+    name: sellers
     rabbitmq:
       host: localhost
       port: 5672

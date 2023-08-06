@@ -9,6 +9,9 @@ import com.product.repositories.ProductRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -114,6 +117,23 @@ public class ProductService {
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "ERROR on delete in Product of Id: " + productDto.getId());
+        }
+    }
+
+
+
+    public Page<Product> findProductAllByUserTodo(String token, Integer page, Integer linesPerPage){
+        UserDto user = this.oauthService.getUserByToken(token);
+
+        try {
+            Pageable paging = PageRequest.of(page, linesPerPage);
+            Page<Product> products = this.productRepository.findAllByOrderByLastUpdatedDateAsc(paging);
+
+            return products;
+        }catch (Exception e){
+            log.error(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "ERROR on find pages of Product this Token-User: " + user.getId());
         }
     }
 

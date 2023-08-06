@@ -1,2 +1,13 @@
-package com.product.dto.oauth;public class RoleDto {
+package com.product.dto;
+
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class RoleDto {
+    private Long id;
+    private String roleName;
 }

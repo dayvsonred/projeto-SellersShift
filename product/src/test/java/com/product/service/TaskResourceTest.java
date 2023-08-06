@@ -1,10 +1,6 @@
 package com.product.service;
 
-import com.product.dto.TaskConclusionDto;
-import com.product.entities.Task;
-import com.product.entities.Todo;
-import com.product.entities.User;
-import com.product.repositories.TaskRepository;
+import com.product.repositories.ImagesRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -47,7 +43,7 @@ public class TaskResourceTest {
     private TaskService taskService;
 
     @MockBean
-    TaskRepository taskRepository;
+    ImagesRepository taskRepository;
 
     @Autowired
     private ObjectMapper objectMapper;

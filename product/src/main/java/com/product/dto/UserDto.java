@@ -1,6 +1,5 @@
 package com.product.dto;
 
-import com.product.entities.Role;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -27,5 +26,5 @@ public class UserDto implements Serializable {
     private String longitude;
     private String offshoot;
     private String cpf;
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleDto> roles = new HashSet<>();
 }

@@ -1,7 +1,7 @@
 package com.product.service;
 
+import com.product.dto.UserDto;
 import com.product.dto.oauth.UserTokenDTO;
-import com.product.entities.User;
 import com.product.integration.OauthIntegration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class OauthService {
         }
     }
 
-    public User getUserByToken(String token) {
+    public UserDto getUserByToken(String token) {
         UserTokenDTO userTokenDTO = this.getUserData(token);
-        User user = new User();
+        UserDto user = new UserDto();
         user.setId(userTokenDTO.getId());
 
         return user;

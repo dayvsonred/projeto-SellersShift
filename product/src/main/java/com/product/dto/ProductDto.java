@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +26,9 @@ public class ProductDto {
     private Boolean active;
     private UUID user;
     private String offshoot;
+    private BigDecimal amount;
+    private Integer units;
+    private String description;
     private Integer views;
     private String latitude;
     private String longitude;

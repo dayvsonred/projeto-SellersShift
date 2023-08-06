@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +30,9 @@ public class Product {
     private Integer views;
     private String latitude;
     private String longitude;
+    private BigDecimal amount;
+    private Integer units;
+    private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<Images> images;
@@ -43,9 +47,4 @@ public class Product {
     @LastModifiedDate
     @Column(name = "last_updated_date", nullable = false)
     private LocalDateTime lastUpdatedDate;
-
-
-
-
-
 }

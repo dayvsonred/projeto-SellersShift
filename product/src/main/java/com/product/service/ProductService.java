@@ -48,6 +48,9 @@ public class ProductService {
                             .longitude(productDto.getLongitude())
                             .images(productDto.getImages())
                             .start(LocalDateTime.now())
+                            .units(productDto.getUnits())
+                            .amount(productDto.getAmount())
+                            .description(productDto.getDescription())
                     .build());
         }catch (Exception e){
             log.error(e.getMessage());

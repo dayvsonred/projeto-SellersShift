@@ -4,8 +4,10 @@ import com.product.dto.ProductDto;
 import com.product.dto.UserDto;
 import com.product.entities.Images;
 import com.product.entities.Product;
+import com.product.entities.ProductViews;
 import com.product.producer.ValidEmailProducer;
 import com.product.repositories.ProductRepository;
+import com.product.repositories.ProductViewsRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ public class ProductService {
     private OauthService oauthService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ValidEmailProducer validEmailProducer;
+    private ProductViewsRepository productViewsRepository;
 
     public Product create(String token, ProductDto productDto){
         try{
@@ -122,8 +125,6 @@ public class ProductService {
         }
     }
 
-
-
     public Page<Product> findProductAllByUserTodo(String token, Integer page, Integer linesPerPage){
         UserDto user = this.oauthService.getUserByToken(token);
 
@@ -139,4 +140,22 @@ public class ProductService {
         }
     }
 
+    public ProductViews addViewFromProduct(String token, UUID productId){
+        try {
+            UserDto user = this.oauthService.getUserByToken(token);
+            Product product = findById(productId);
+            this.validProductFromUser(product,user);
+
+
+            return this.productViewsRepository.save(ProductViews.builder()
+                            .user(user.getId())
+                            .product(product)
+                            .createdDate(LocalDateTime.now())
+                    .build());
+        }catch (Exception e){
+            log.error(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "ERROR on add view in Product of Id: " + productId);
+        }
+    }
 }

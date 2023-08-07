@@ -3,6 +3,7 @@ package com.product.resource;
 import com.product.dto.ProductDto;
 import com.product.dto.UserDto;
 import com.product.entities.Product;
+import com.product.entities.ProductViews;
 import com.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,14 @@ public class ProductResource {
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage
     ) {
         return ResponseEntity.ok(this.productService.findProductAllByUserTodo(token, page, linesPerPage));
+    }
+
+    @GetMapping(value = "add/views/{product}")
+    public ResponseEntity<ProductViews> addViews(
+            @RequestHeader(value = "Authorization") String token,
+            @PathVariable UUID product) {
+        log.info("Add views to product {}", product);
+        return ResponseEntity.ok(this.productService.addViewFromProduct(token, product));
     }
     //get by coordenades proximas
 }

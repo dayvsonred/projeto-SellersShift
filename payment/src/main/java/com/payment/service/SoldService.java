@@ -1,18 +1,13 @@
-package com.sellers.service;
+package com.payment.service;
 
-import com.sellers.dto.ProductDto;
-import com.sellers.dto.SoldDto;
-import com.sellers.dto.UserDto;
-import com.sellers.entities.Product;
-import com.sellers.entities.Sold;
-import com.sellers.producer.ValidEmailProducer;
-import com.sellers.repositories.ProductRepository;
-import com.sellers.repositories.SoldRepository;
+import com.payment.dto.SoldDto;
+import com.payment.dto.UserDto;
+import com.payment.entities.Sold;
+import com.payment.producer.ValidEmailProducer;
+import com.payment.repositories.SoldRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.Column;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

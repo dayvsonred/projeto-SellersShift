@@ -1,18 +1,13 @@
 package com.sellers.service;
 
-import com.sellers.dto.ProductDto;
 import com.sellers.dto.SoldDto;
 import com.sellers.dto.UserDto;
-import com.sellers.entities.Product;
 import com.sellers.entities.Sold;
-import com.sellers.producer.ValidEmailProducer;
-import com.sellers.repositories.ProductRepository;
+import com.sellers.producer.PaymentProducer;
 import com.sellers.repositories.SoldRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.Column;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -34,7 +27,8 @@ public class SoldService {
     private SoldRepository soldRepository;
     private OauthService oauthService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private ValidEmailProducer validEmailProducer;
+    private PaymentProducer validEmailProducer;
+    private PaymentProducer paymentProducer;
 
     public Sold create(String token, SoldDto soldDto){
         try{
@@ -43,7 +37,11 @@ public class SoldService {
 
             //enviar email de venda em processamento
             //envviar apara fila de pagamento da integração apra realizar pagamento
-            return this.soldRepository.save(Sold.builder()
+
+
+
+
+            Sold sold = this.soldRepository.save(Sold.builder()
                             .user(user.getId())
                             .product(soldDto.getProduct())
                             .amount(soldDto.getAmount())
@@ -58,6 +56,10 @@ public class SoldService {
                             .createdDate(LocalDateTime.now())
                             .lastUpdatedDate(LocalDateTime.now())
                     .build());
+
+            this.paymentProducer.sendMessage(sold);
+
+            return sold;
         }catch (Exception e){
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -134,6 +136,15 @@ public class SoldService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "ERROR on find pages of Sold this Token-User: " + user.getId());
         }
+    }
+
+    public void createPayment(SoldDto soldDto){
+        log.info("create payment");
+        log.info(soldDto.getId().toString());
+
+        Sold sold = this.findById(soldDto.getId());
+
+        log.info(sold.getId().toString());
     }
 
 }

@@ -1,6 +1,5 @@
 package com.payment.dto;
 
-import com.payment.entities.Sold;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,7 +13,7 @@ import java.util.UUID;
 public class PaymentDto {
 
     private UUID id;
-    private Sold sold;
+    private SoldDto sold;
     private LocalDateTime paymentDate;
     private Boolean confirmed;
     private UUID confirmed_payment_id;

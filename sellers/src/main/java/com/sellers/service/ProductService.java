@@ -3,7 +3,7 @@ package com.sellers.service;
 import com.sellers.dto.ProductDto;
 import com.sellers.dto.UserDto;
 import com.sellers.entities.Product;
-import com.sellers.producer.ValidEmailProducer;
+import com.sellers.producer.PaymentProducer;
 import com.sellers.repositories.ProductRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class ProductService {
     private ProductRepository productRepository;
     private OauthService oauthService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private ValidEmailProducer validEmailProducer;
+    private PaymentProducer validEmailProducer;
 
     public Product create(String token, ProductDto productDto){
         try{

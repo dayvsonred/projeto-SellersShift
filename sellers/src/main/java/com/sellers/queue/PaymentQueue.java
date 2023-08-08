@@ -1,4 +1,4 @@
-package com.payment.queue;
+package com.sellers.queue;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ValidEmailQueue {
-    @Value("${rabbitmq.valid-email.queue}")
+public class PaymentQueue {
+    @Value("${rabbitmq.payment.queue}")
     private String queue;
 
-    @Value("${rabbitmq.valid-email.exchange}")
+    @Value("${rabbitmq.payment.exchange}")
     private String exchange;
 
-    @Value("${rabbitmq.valid-email.routing}")
+    @Value("${rabbitmq.payment.routing}")
     private String routingKey;
 
     @Bean

@@ -1,6 +1,6 @@
-package com.payment.integration;
+package com.notification.integration;
 
-import com.payment.dto.oauth.UserTokenDTO;
+import com.notification.dto.oauth.UserTokenDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;

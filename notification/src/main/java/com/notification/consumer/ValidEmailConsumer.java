@@ -1,7 +1,7 @@
-package com.payment.consumer;
+package com.notification.consumer;
 
-import com.payment.dto.SoldDto;
-import com.payment.service.ValidEmailService;
+import com.notification.dto.SoldDto;
+import com.notification.service.ValidEmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

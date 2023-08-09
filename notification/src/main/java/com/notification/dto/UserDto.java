@@ -1,4 +1,4 @@
-package com.payment.dto;
+package com.notification.dto;
 
 import lombok.*;
 
@@ -26,5 +26,8 @@ public class UserDto implements Serializable {
     private String longitude;
     private String offshoot;
     private String cpf;
-    private Set<RoleDto> roles = new HashSet<>();
+    private Set<String> roles = new HashSet<>();
+    private Boolean active;
+    private UserDetailsDto userDetails;
+
 }

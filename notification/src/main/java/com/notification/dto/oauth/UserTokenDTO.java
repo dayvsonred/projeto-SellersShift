@@ -1,4 +1,4 @@
-package com.payment.dto.oauth;
+package com.notification.dto.oauth;
 
 import lombok.*;
 

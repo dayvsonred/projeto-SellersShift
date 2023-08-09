@@ -1,7 +1,7 @@
-package com.payment.service;
+package com.notification.service;
 
-import com.payment.dto.SoldDto;
-import com.payment.integration.SoldIntegration;
+import com.notification.dto.SoldDto;
+import com.notification.integration.SoldIntegration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

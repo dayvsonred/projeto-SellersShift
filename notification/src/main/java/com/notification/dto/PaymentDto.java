@@ -1,4 +1,4 @@
-package com.payment.dto;
+package com.notification.dto;
 
 import lombok.*;
 

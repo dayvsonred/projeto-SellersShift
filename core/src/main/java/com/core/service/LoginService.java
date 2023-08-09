@@ -112,23 +112,23 @@ public class LoginService {
         }
     }
 
-    public void validUserEmail(UUID token, UUID userId){
+    public void validUserEmail(UUID email, UUID userId){
         try {
             User user = this.findUserById(userId);
 
             if(user.getActive().equals(false) &&
-                    token.toString().equals(user.getUserDetails().getEmailValidCode().toString())){
+                    email.toString().equals(user.getUserDetails().getEmailValidCode().toString())){
                 user.getUserDetails().setEmailValid(true);
                 user.setActive(true);
                 this.userRepository.save(user);
             }else {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "ERROR valid email token: " + token);
+                        "ERROR valid email token: " + email);
             }
         }catch (Exception e){
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "ERROR valid email token: " + token);
+                    "ERROR valid email token: " + email);
         }
     }
 }

@@ -14,8 +14,8 @@ spring:
   mail:
     host: email-smtp.us-east-1.amazonaws.com
     port: 587
-    username: AKIAW6IMEBU52ZZSJ25E
-    password: BGhc/RtYB5TD4xCzTjT1MLkzy3RLn+EwcGj0JxGsPvaU
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
 
     properties:
       mail:

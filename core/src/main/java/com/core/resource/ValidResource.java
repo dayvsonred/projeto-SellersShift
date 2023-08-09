@@ -19,12 +19,12 @@ public class ValidResource {
 	@Autowired
 	private LoginService loginService;
 	
-	@GetMapping(value = "/email/{token}/{user}")
+	@GetMapping(value = "/email/{email}/{user}")
 	public ResponseEntity<HttpStatus> validUserEmail(
-			@PathVariable UUID token,
+			@PathVariable UUID email,
 			@PathVariable UUID user) {
-		log.info("valid token {} user {}", token, user);
-		this.loginService.validUserEmail(token, user);
+		log.info("valid token {} user {}", email, user);
+		this.loginService.validUserEmail(email, user);
 		return ResponseEntity.ok().build();
 	}
 }

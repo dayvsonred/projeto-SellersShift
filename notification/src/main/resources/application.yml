@@ -1,5 +1,5 @@
 server:
-#  port: 5115
+#  port: 5315
 #  error:
 #    include-stacktrace: NEVER
 #  port: ${PORT:5055}
@@ -11,6 +11,21 @@ spring:
       port: 5672
       username: guest
       password: guest
+  mail:
+    host: email-smtp.us-east-1.amazonaws.com
+    port: 587
+    username: AKIAW6IMEBU52ZZSJ25E
+    password: BGhc/RtYB5TD4xCzTjT1MLkzy3RLn+EwcGj0JxGsPvaU
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 
 eureka:
   instance: instance-id=${spring:application:name}:${spring:application:instance_id:${random:value}}

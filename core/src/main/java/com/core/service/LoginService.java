@@ -48,7 +48,7 @@ public class LoginService {
             user.setPassword("******");
 
             log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
-            this.validEmailProducer.sendMessage(userDto);
+            this.validEmailProducer.sendMessage(user);
 
             return user;
         }catch (ResponseStatusException e){
@@ -109,6 +109,26 @@ public class LoginService {
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "ERROR User email not found in DB with id: " + id);
+        }
+    }
+
+    public void validUserEmail(UUID token, UUID userId){
+        try {
+            User user = this.findUserById(userId);
+
+            if(user.getActive().equals(false) &&
+                    token.toString().equals(user.getUserDetails().getEmailValidCode().toString())){
+                user.getUserDetails().setEmailValid(true);
+                user.setActive(true);
+                this.userRepository.save(user);
+            }else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "ERROR valid email token: " + token);
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "ERROR valid email token: " + token);
         }
     }
 }

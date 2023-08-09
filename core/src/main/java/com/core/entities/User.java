@@ -29,6 +29,7 @@ public class User implements Serializable {
 	private String longitude;
 	private String offshoot;
 	private String cpf;
+	private Boolean active;
 
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -38,7 +39,7 @@ public class User implements Serializable {
 	)
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user")
 	private UserDetails userDetails;
 	
 	public User() {
@@ -58,6 +59,8 @@ public class User implements Serializable {
 
 	public User(String name, String email, String password, String latitude, String longitude, String offshoot, String cpf) {
 		super();
+		UUID emailValidCode = UUID.randomUUID();
+		UUID cpfValidCode = UUID.randomUUID();
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -66,6 +69,13 @@ public class User implements Serializable {
 		this.offshoot = offshoot;
 		this.cpf = cpf;
 		this.roles = this.defaultRolesNewUser();
+		this.active = false;
+		this.userDetails = UserDetails.builder()
+				.emailValid(false)
+				.emailValidCode(emailValidCode)
+				.cpfValid(false)
+				.cpfValidCode(cpfValidCode).build();
+		this.active = false;
 	}
 
 	private HashSet<Role> defaultRolesNewUser(){

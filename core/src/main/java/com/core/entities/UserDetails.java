@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -23,8 +24,13 @@ public class UserDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 
-	private String emailValid;
-	private String cpfValid;
+	private Boolean emailValid;
+	private UUID emailValidCode;
+	private LocalDateTime dueEmailValid;
+	private Boolean cpfValid;
+	private UUID cpfValidCode;
+	private LocalDateTime dueCpfValid;
+
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)

@@ -1,6 +1,5 @@
-package com.core.dto;
+package com.payment.dto;
 
-import com.core.entities.Role;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -27,8 +26,5 @@ public class UserDto implements Serializable {
     private String longitude;
     private String offshoot;
     private String cpf;
-    private Set<Role> roles = new HashSet<>();
-    private Boolean active;
-    private UserDetailsDto userDetails;
-
+    private Set<RoleDto> roles = new HashSet<>();
 }

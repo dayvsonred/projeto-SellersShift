@@ -1,6 +1,7 @@
 package com.core.producer;
 
 import com.core.dto.UserDto;
+import com.core.entities.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class ValidEmailProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendMessage(UserDto message){
+    public void sendMessage(User message){
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
         try {
             rabbitTemplate.convertAndSend(exchange, routingKey, message);

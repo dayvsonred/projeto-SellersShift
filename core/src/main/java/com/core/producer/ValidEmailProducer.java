@@ -2,6 +2,7 @@ package com.core.producer;
 
 import com.core.dto.UserDto;
 import com.core.entities.User;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,14 @@ public class ValidEmailProducer {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendMessage(User message){
-        rabbitTemplate.convertAndSend(exchange, routingKey, message);
+    public void sendMessage(User user){
         try {
-            rabbitTemplate.convertAndSend(exchange, routingKey, message);
-            log.info("New event send event valid email id: {}", message.getId());
+            Gson gson = new Gson();
+            String message = gson.toJson(user, User.class);
+            rabbitTemplate. convertAndSend(exchange, routingKey, message);
+            log.info("New event send event valid email id: {}", user.getId());
         }catch ( Exception e){
-            log.info("ERROR send event valid email id: {} ", message.getId());
+            log.info("ERROR send event valid email id: {} ", user.getId());
             throw new RuntimeException(e);
         }
     }

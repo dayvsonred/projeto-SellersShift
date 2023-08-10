@@ -2,7 +2,9 @@ package com.core.service;
 
 import com.core.dto.UserDto;
 import com.core.entities.User;
+import com.core.entities.UserDetails;
 import com.core.producer.ValidEmailProducer;
+import com.core.repositories.UserDetailsRepository;
 import com.core.repositories.UserRepository;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +24,11 @@ public class LoginService {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private UserDetailsRepository userDetailsRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
     private ValidEmailProducer validEmailProducer;
 
     public User createNewUser(UserDto userDto){
@@ -45,12 +49,23 @@ public class LoginService {
                     userDto.getCpf()
             );
             User user = userRepository.save(userPreLoad);
+
+            UUID emailValidCode = UUID.randomUUID();
+
+            UserDetails userDetails = new UserDetails(
+                    emailValidCode,
+                    user
+            );
+            userDetails = userDetailsRepository.save(userDetails);
+
             user.setPassword("******");
 
             log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
             this.validEmailProducer.sendMessage(user);
 
-            return user;
+            log.info("Success create new user {}", userDto.getEmail());
+
+            return this.findUserByEmail(user.getEmail());
         }catch (ResponseStatusException e){
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
@@ -67,7 +82,7 @@ public class LoginService {
             if(!isNull(existUserDtoByEmail(userDto))){
                 throw new RuntimeException("User email already exists in DB !!!");
             }
-
+            log.info("new user on db ok");
             return true;
         }catch (RuntimeException e){
             log.error(e.getMessage());

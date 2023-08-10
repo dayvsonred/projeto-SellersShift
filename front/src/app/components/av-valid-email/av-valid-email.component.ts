@@ -51,40 +51,6 @@ export class AvValidEmailComponent implements OnInit {
     this.router.navigate(['dashboard']);
   }
 
-
-  onSubmit() {
-    this.submitted = true;
-    console.log("criando usuario");
-    console.log(this.form.value.userName);
-    console.log(this.form.value.password);
-    console.log(this.form.value.passwordConfirm);
-
-    if(this.form.value.password != this.form.value.passwordConfirm){
-      this.openSnackBar();
-      return;
-    }
-
-    this.authService.createNewUserLongin({
-      email: this.form.value.userName,
-      name : this.form.value.userName,
-      password: this.form.value.password
-    }).subscribe({
-      next: (res) => res,
-      error: (e) => e,
-    })
-  }
-
-  isFieldInvalid(field: string) {
-    return (
-      (!this.form.get(field).valid && this.form.get(field).touched) ||
-      (this.form.get(field).untouched && this.formSubmitAttempt)
-    );
-  }
-
-  creatNewUser(){
-    
-  }
-
   openSnackBar() {
     this._snackBar.open('the passwords are different!!', 'Ok', {
       horizontalPosition: this.horizontalPosition,

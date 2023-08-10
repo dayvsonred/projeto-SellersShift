@@ -61,7 +61,15 @@ export class AuthService {
 	}
 
 	
-	public createNewUserLongin(payload : {email : string, name: string, password: string }): Observable<any> {
+	public createNewUserLongin(payload : {
+		email : string, 
+		name: string, 
+		password: string,
+		cpf: string,
+		offshoot: string,
+		longitude: string,
+		latitude: string
+	}): Observable<any> {
 		console.log("start creat login of user");
 		console.log(payload);
 		const body = payload; 
@@ -75,7 +83,8 @@ export class AuthService {
 				console.log("res creat login of user");
 				console.log(res);
 
-				return this.router.navigate(['valid-email']);	
+				//return this.router.navigate(['new/user/valid/email']);	
+				return null;
 			}),
 			catchError((e) => {
 				if (e.error.message) return throwError(() => e.error.message);

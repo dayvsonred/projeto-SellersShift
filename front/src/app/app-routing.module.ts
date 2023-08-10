@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/new-user/new-user.module').then((m) => m.NewUserModule),
   },
   {
-    path: 'new/valid/email',
+    path: 'new/user/valid/email',
     loadChildren: () => import('./components/av-valid-email/av-valid-email.module').then((m) => m.AvValidEmailModule),
   },
 

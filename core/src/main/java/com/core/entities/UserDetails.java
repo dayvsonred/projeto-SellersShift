@@ -32,7 +32,15 @@ public class UserDetails implements Serializable {
 	private LocalDateTime dueCpfValid;
 
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+
+	public UserDetails(UUID emailValidCode, User user){
+		super();
+		this.emailValid = false;
+		this.emailValidCode = emailValidCode;
+		this.cpfValid = false;
+		this.user = user;
+	}
 }

@@ -65,9 +65,13 @@ export class NewUserComponent implements OnInit {
     }
 
     this.authService.createNewUserLongin({
-      email: this.form.value.userName,
+      email: this.form.value.userEmail,
       name : this.form.value.userName,
-      password: this.form.value.password
+      password : this.form.value.password,
+      cpf : this.form.value.userCpf,
+      offshoot : "Cão",
+      longitude : "00",
+      latitude : "00"
     }).subscribe({
       next: (res) => res,
       error: (e) => e,

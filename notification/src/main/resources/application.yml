@@ -34,11 +34,11 @@ eureka:
       defaultzone: http://localhost:8761
 
 rabbitmq:
-  payment:
-    queue: pos.payment.queue
-    exchange: pos.payment.exchange
-    routing: pos.payment.routing
+  valid-email:
+    queue: pos.valid.email.queue
+    exchange: pos.valid.email.exchange
+    routing: pos.valid.email.routing
 
 link:
   host:
-    email: http://localhost:8761/valid-email/
+    email: http://localhost/new/user/valid/email

@@ -58,14 +58,16 @@ public class LoginService {
             );
             userDetails = userDetailsRepository.save(userDetails);
 
-            user.setPassword("******");
+
+            User userOk = this.findUserByEmail(user.getEmail());
+            userOk.setPassword("******");
 
             log.info("#$%#$% add send to fila para processar fila de usuario proximos**********");
-            this.validEmailProducer.sendMessage(user);
+            this.validEmailProducer.sendMessage(userDetails);
 
-            log.info("Success create new user {}", userDto.getEmail());
+            log.info("Success create new user {}", userOk.getEmail());
 
-            return this.findUserByEmail(user.getEmail());
+            return userOk;
         }catch (ResponseStatusException e){
             log.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,

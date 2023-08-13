@@ -26,8 +26,7 @@ public class UserDto implements Serializable {
     private String longitude;
     private String offshoot;
     private String cpf;
-    private Set<String> roles = new HashSet<>();
     private Boolean active;
-    private UserDetailsDto userDetails;
+    private UserDetails userDetails;
 
 }

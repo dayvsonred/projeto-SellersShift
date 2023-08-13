@@ -1,50 +1,60 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './components/guards/auth.guard';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
-  {
-		path:'', 
-    loadChildren: () => import('./components/login/login.module').then((m) => m.LoginModule),
-	},
-	{
-		path:'dashboard', 
-    loadChildren: () => import('./components/dashboard/dashboard.module').then((m) => m.DashboardModule),
-		canActivate:[AuthGuard]
-	},
-  {
-    path: 'todo',
-    loadChildren: () => import('./components/todo/todo.module').then((m) => m.TodoModule),
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'task/list/:id',
-    loadChildren: () => import('./components/task-list/task-list.module').then((m) => m.TaskListModule),
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'task/creat/:id',
-    loadChildren: () => import('./components/task/task.module').then((m) => m.TaskModule),
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'task/edit/:id/:todo_id',
-    loadChildren: () => import('./components/task-edit/task-edit.module').then((m) => m.TaskEditModule),
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'new/user',
-    loadChildren: () => import('./components/new-user/new-user.module').then((m) => m.NewUserModule),
-  },
-  {
-    path: 'new/user/valid/email',
-    loadChildren: () => import('./components/av-valid-email/av-valid-email.module').then((m) => m.AvValidEmailModule),
-  },
+import { AuthGuard } from './core/guards/auth.guard';
 
+const appRoutes: Routes = [
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'customers',
+    loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'icons',
+    loadChildren: () => import('./features/icons/icons.module').then(m => m.IconsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'typography',
+    loadChildren: () => import('./features/typography/typography.module').then(m => m.TypographyModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

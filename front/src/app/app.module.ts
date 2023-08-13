@@ -1,35 +1,32 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthService } from './components/services/auth.service';
-import { AuthGuard } from './components/guards/auth.guard';
-import { TodoService } from './components/services/todo.service';
-
-
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { AppRoutingModule } from './app-routing.module';
+import { LoggerModule } from 'ngx-logger';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    // CommonModule,
-    AppRoutingModule,
-    // FormsModule,
-    // ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    
-    
+    CoreModule,
+    SharedModule,
+    CustomMaterialModule.forRoot(),
+    AppRoutingModule,
+    // LoggerModule.forRoot({
+    //   serverLoggingUrl: `http://my-api/logs`,
+    //   level: environment.logLevel,
+    //   serverLogLevel: environment.serverLogLevel
+    // })
   ],
-  providers: [ AuthService, AuthGuard, TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

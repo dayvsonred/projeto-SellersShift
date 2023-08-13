@@ -1,6 +1,7 @@
 package com.notification.service;
 
 import com.notification.dto.SoldDto;
+import com.notification.dto.UserDetails;
 import com.notification.dto.UserDto;
 import com.notification.entities.Email;
 import com.notification.integration.SoldIntegration;
@@ -40,20 +41,20 @@ public class ValidEmailService {
         this.soldIntegration.createPayment(soldDto);
     }
 
-    public void sendEmailToValidEmail(UserDto userDto){
+    public void sendEmailToValidEmail(UserDetails userDto){
         try {
             log.info("send sendEmailToValidEmail soldDto");
-            log.info("send sendEmailToValidEmail soldDto :{}", userDto.getEmail());
+            log.info("send sendEmailToValidEmail soldDto :{}", userDto.getUser().getEmail());
 
             String html = IOUtils.toString(new ClassPathResource(TEMPLATE_EMAIL_VALID_HTML).getInputStream(), String.valueOf(StandardCharsets.UTF_8));
-            String linkValidEmail =  hostLink + "/" + userDto.getId() + "/" + userDto.getUserDetails().getEmailValidCode();
+            String linkValidEmail =  hostLink + "/" + userDto.getUser().getId().toString() + "/" + userDto.getEmailValidCode().toString();
             html = LINK_TARGET.matcher(html).replaceAll(StringEscapeUtils.escapeHtml(linkValidEmail));
 
             Email email = Email.builder()
                     .from("dayvson.red@gmail.com")
-                    .to(userDto.getEmail())
+                    .to(userDto.getUser().getEmail())
                     .text(html)
-                    .subject("Bem vindo ao SellersShift - "+ userDto.getName())
+                    .subject("Bem vindo ao SellersShift - "+ userDto.getUser().getName())
                     .build();
 
             this.sendEmail(email);

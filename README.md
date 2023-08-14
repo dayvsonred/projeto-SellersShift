@@ -1,4 +1,4 @@
-# BackEnd SpringBoot Java 8
+#PROJETO PUC POS SellersShift
 
 This project was generated with [SpringBoot](https://spring.io/projects/spring-boot/) version 2
 

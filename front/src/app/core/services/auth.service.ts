@@ -284,8 +284,8 @@ export class AuthenticationService {
 				console.log("res creat login of user");
 				console.log(res);
 
-				//return this.router.navigate(['new/user/valid/email']);	
-				return null;
+				return this.router.navigate(['auth/valid-email']);	
+				
 			}),
 			catchError((e) => {
 				if (e.error.message) return throwError(() => e.error.message);

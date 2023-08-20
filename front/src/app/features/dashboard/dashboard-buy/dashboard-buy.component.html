@@ -1,0 +1,118 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+
+  <div fxFlex="95%">
+    <div class="container" fxLayout="row" fxLayoutAlign="center none">
+      <h2>Finalizar a compra, (quantidade)</h2>
+    </div>
+
+
+    <div class="container" fxLayout="row" fxLayoutAlign="left none">
+      <div class="part-card-final-pd part-card-tit">
+        <h2>1. Endereço de entrega</h2>
+      </div>
+      <div class="part-card-final-pd" style=" margin-left: 20px;">
+        <ul>
+          <li>dayvison vicente menezes</li>
+          <li>rio de janeiro 30</li>
+          <li>bloco B3 Apartamento 203</li>
+          <li>Coronel Fabriciano, Minas Gerais 35171313</li>
+        </ul>
+        <a [routerLink]="['/account/profile']">Alterar endereço</a>
+      </div>
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutAlign="left none">
+      <div class="part-card-final-pd part-card-tit">
+        <h2>2. Método de pagamento</h2>
+      </div>
+      <div class="part-card-final-pd" style=" margin-left: 20px;">
+        <ul>
+          <li>Crédito final 8888</li>
+        </ul>
+        <mat-form-field class="full-width">
+          <mat-label>Cartão código</mat-label>
+          <input matInput formControlName="secretCard">
+          <mat-error *ngIf="form.controls['secretCard'].hasError('required')">
+            Por favor, confirme o código do cartão
+          </mat-error>
+        </mat-form-field>
+        <a [routerLink]="['/account/profile']">Alterar pagamento</a>
+      </div>
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutAlign="left none">
+      <div class="part-card-final-pd part-card-tit">
+        <h2>3. Revisar itens e envio</h2>
+      </div>
+      <div class="part-card-final-pd" style=" margin-left: 20px;">
+        <table>
+          <tr>
+            <td style="width: 100px;"><span class="part-cart-itens">Produto: </span></td><td> nome produto </td>
+          </tr>
+          <tr>
+            <td><span class="part-cart-itens">Quantidade: </span></td><td> 1 </td>
+          </tr>
+          <tr>
+            <td><span class="part-cart-itens">Valor: </span> </td><td> R$: 45.98 </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutAlign="left none">
+      <div class="part-card-final-pd part-card-tit">
+        <h2>4. Finalizar pedido</h2>
+      </div>
+      <div class="part-card-final-pd" style=" margin-left: 20px;">
+        <section>
+          <div class="example-button-row" style="text-align-last: right;">
+            <button mat-raised-button color="primary" style="background-color: darkgreen;" (click)="goToExecBuy(produto)" >Finalizar compra</button>
+          </div>
+        </section>
+      </div>
+
+
+    </div>
+
+
+    <div fxLayout="row wrap" fxLayoutAlign="center stretch">
+
+      <mat-card class="example-card dash-item-card">
+        <mat-card-header>
+          <mat-card-title> Produto name </mat-card-title>
+          <mat-card-subtitle class="subtitle-color"> subititulo </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="dash-card-list-item-img">
+            <img mat-card-image src={{produto.img}} alt="Ver mais">
+          </div>
+          <p class="a-color-price"> Preço R$: 458.00 </p>
+          <p> <mat-icon class="material-symbols-outlined"> visibility </mat-icon> 50 </p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title> Detalhes </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+          <p class="">Lorem ipsum platea dictum ante tellus rutrum nec phasellus ligula, phasellus risus aliquet class
+            metus vivamus ullamcorper sapien. sit suspendisse nisi lorem amet aenean platea nostra tempus, rutrum aptent
+            donec ultricies orci diam potenti, fermentum porta dictum suscipit ac vestibulum arcu. mi torquent nisi
+            gravida iaculis eros morbi volutpat faucibus nullam arcu enim, hendrerit nunc aliquam maecenas commodo per
+            quisque potenti proin lobortis proin bibendum, curabitur vehicula mauris dui lobortis inceptos dictum
+            aliquet praesent ullamcorper. at dolor vivamus consectetur aenean taciti neque, ornare et vivamus
+            consectetur litora tristique phasellus, aenean eros ad lacinia hendrerit </p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>

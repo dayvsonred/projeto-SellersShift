@@ -1,18 +1,53 @@
+
+
+
 <div class="container" fxLayout="row" fxLayoutAlign="center none">
 
   <div fxFlex="95%">
     <div class="container" fxLayout="row" fxLayoutAlign="center none">
-
-      <h2>Welcome back, {{currentUser.fullName}}!</h2>
-
+      <h2>Bem Vindo, {{currentUser.fullName}}!</h2>
     </div>
 
-    <div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <!-- <div class="container" fxLayout="row" fxLayoutAlign="center none">
       <div fxFlex="50%" class="text-center no-records animate">
         <mat-icon>dashboard</mat-icon>
         <p>This is the dashboard.</p>
       </div>
       <mat-icon> </mat-icon>
+    </div> -->
+
+    <div  fxLayout="row wrap" fxLayoutAlign="start stretch" >
+        <mat-card class="example-card dash-item-card" *ngFor="let produto of produtos" (click)="viewProduct(produto)"  style="margin-right: 10px;" >
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image">
+              <img mat-card-image src="https://m.media-amazon.com/images/I/51ftyQ4Q54L._AC_SX522_.jpg" alt="name produto"  >
+            </div> -->
+            <mat-card-title > Produto name </mat-card-title>
+            <mat-card-subtitle class="subtitle-color"> subititulo </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content >
+              <div  class="dash-card-list-item-img" > 
+                <img mat-card-image src={{produto.img}} alt="Ver mais" >
+              </div>
+            <p class="a-color-price"> Preço R$: 458.00 </p>
+            <p> <mat-icon class="material-symbols-outlined"> visibility </mat-icon> 50 </p>
+          </mat-card-content>
+        </mat-card>
+        <!-- <mat-icon>dashboard</mat-icon>
+        <p>This is the dashboard.</p> -->
+
     </div>
+
+    <div  class="container" fxLayout="column" fxLayoutAlign="center stretch" >
+      <mat-paginator [length]="100"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Select page">
+      </mat-paginator>
+    </div>
+    
   </div>
+
+
+
 </div>

@@ -1,0 +1,77 @@
+<form [formGroup]="form">
+  <p>Use o formulário abaixo para alterar dados do pagamento.</p>
+
+  <div fxLayout="row">
+
+    <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
+
+      <mat-form-field class="full-width">
+        <mat-label>Cartão nome</mat-label>
+        <input matInput formControlName="nameCard">
+        <mat-error *ngIf="form.controls['nameCard'].hasError('required')">
+          Por favor, insira o nome do cartão
+        </mat-error>
+      </mat-form-field>
+
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td><mat-form-field class="full-width">
+            <mat-label>Cartão número</mat-label>
+            <input matInput formControlName="numCard">
+
+            <mat-error *ngIf="form.controls['numCard'].hasError('required')">
+              Por favor, insira o número do cartão
+            </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field class="full-width">
+                <mat-label>Código do cartão</mat-label>
+                <input matInput [type]="hideCurrentPassword ? 'password' : 'text'" formControlName="secretCard">
+                <mat-icon matSuffix (click)="hideCurrentPassword = !hideCurrentPassword">
+                  {{hideCurrentPassword ? 'visibility' : 'visibility_off'}}
+                </mat-icon>
+                <mat-error *ngIf="form.controls['numCard'].hasError('required')">
+                  Por favor, insira o Código secreta do cartão
+                </mat-error>
+              </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <mat-form-field class="full-width">
+        <mat-label>Cartão validade</mat-label>
+        <input matInput  formControlName="dateCard">
+        <mat-error *ngIf="form.controls['numCard'].hasError('required')">
+          Por favor, insira a validade do cartão
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit" (click)="changePassword()">Save</button>
+
+    </div>
+
+  </div>
+
+</form>
+
+<!-- <div class="password-rules" fxFlex="65%" fxFlex.sm="90%" fxFlex.xs="95%">
+    Password rules:
+    <mat-list>
+      <mat-list-item>
+        Must be at least 6 characters
+      </mat-list-item>
+
+      <mat-list-item>
+        Must contain at least one non alphanumeric character
+      </mat-list-item>
+
+      <mat-list-item>
+        Must contain at least one lowercase ('a'-'z')
+      </mat-list-item>
+
+      <mat-list-item>
+        Must contain at least one uppercase ('A'-'Z')
+      </mat-list-item>
+    </mat-list>
+  </div> -->

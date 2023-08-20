@@ -6,13 +6,14 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard-home',
-  templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.css']
+  selector: 'app-dashboard-product',
+  templateUrl: './dashboard-product.component.html',
+  styleUrls: ['./dashboard-product.component.css']
 })
-export class DashboardHomeComponent implements OnInit {
+export class DashboardProductComponent implements OnInit {
   currentUser: any;
   produtos: any;
+  produto: any;
 
   constructor(private notificationService: NotificationService,
     private authService: AuthenticationService,
@@ -28,6 +29,7 @@ export class DashboardHomeComponent implements OnInit {
       name : "aaaaa",
       img : "https://m.media-amazon.com/images/I/51ftyQ4Q54L._AC_SX522_.jpg"
     };
+    this.produto = pd;
     let  pd2 = {
       name : "bbbbb",
       img : "https://m.media-amazon.com/images/I/51cf2LQtBXL.__AC_SX300_SY300_QL70_ML2_.jpg"
@@ -39,15 +41,17 @@ export class DashboardHomeComponent implements OnInit {
     this.titleService.setTitle('SellersShift - Dashboard');
     // this.logger.log('Dashboard loaded');
 
-    setTimeout(() => {
-      this.notificationService.openSnackBar('Welcome!');
-    });
+
   }
 
   viewProduct(produtct: any){
     console.log("view produtct");
     console.log(produtct);
-    this.router.navigate(['/dashboard/produto/1']);
-
   }
+
+  goToBuy(){
+    this.router.navigate(['dashboard/buy']);
+  }
+
+
 }

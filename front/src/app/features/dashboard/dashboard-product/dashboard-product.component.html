@@ -1,0 +1,114 @@
+
+
+
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+
+  <div fxFlex="95%">
+    <div class="container" fxLayout="row" fxLayoutAlign="center none">
+      <h2>Bem Vindo, {{currentUser.fullName}}!</h2>
+    </div>
+
+    <!-- <div class="container" fxLayout="row" fxLayoutAlign="center none">
+      <div fxFlex="50%" class="text-center no-records animate">
+        <mat-icon>dashboard</mat-icon>
+        <p>This is the dashboard.</p>
+      </div>
+      <mat-icon> </mat-icon>
+    </div> -->
+
+    <div  fxLayout="row wrap" fxLayoutAlign="center stretch" >
+
+        <mat-card class="example-card dash-item-card" >
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image">
+              <img mat-card-image src="https://m.media-amazon.com/images/I/51ftyQ4Q54L._AC_SX522_.jpg" alt="name produto"  >
+            </div> -->
+            <mat-card-title > Produto name </mat-card-title>
+            <mat-card-subtitle class="subtitle-color"> subititulo </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content >
+              <div  class="dash-card-list-item-img" > 
+                <img mat-card-image src={{produto.img}} alt="Ver mais" >
+              </div>
+            <p class="a-color-price"> Preço R$: 458.00 </p>
+            <p> <mat-icon class="material-symbols-outlined"> visibility </mat-icon> 50 </p>
+          </mat-card-content>
+        </mat-card>
+        <!-- <mat-icon>dashboard</mat-icon>
+        <p>This is the dashboard.</p> -->
+
+        <mat-card class="example-card" >
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image">
+              <img mat-card-image src="https://m.media-amazon.com/images/I/51ftyQ4Q54L._AC_SX522_.jpg" alt="name produto"  >
+            </div> -->
+            <mat-card-title > Detalhes </mat-card-title>
+            <!-- <mat-card-subtitle class="subtitle-color"> subititulo </mat-card-subtitle> -->
+          </mat-card-header>
+          <mat-card-content >
+
+            <p class="">Lorem ipsum platea dictum ante tellus rutrum nec phasellus ligula, phasellus risus aliquet class metus vivamus ullamcorper sapien. sit suspendisse nisi lorem amet aenean platea nostra tempus, rutrum aptent donec ultricies orci diam potenti, fermentum porta dictum suscipit ac vestibulum arcu. mi torquent nisi gravida iaculis eros morbi volutpat faucibus nullam arcu enim, hendrerit nunc aliquam maecenas commodo per quisque potenti proin lobortis proin bibendum, curabitur vehicula mauris dui lobortis inceptos dictum aliquet praesent ullamcorper. at dolor vivamus consectetur aenean taciti neque, ornare et vivamus consectetur litora tristique phasellus, aenean eros ad lacinia hendrerit </p>
+            
+            
+            <section>
+              <div class="example-label">Gosto!</div>
+              <div class="example-button-row">
+                <button mat-raised-button color="primary"  (click)="goToBuy()" >Comprar</button>
+              </div>
+            </section>
+
+          </mat-card-content>
+        </mat-card>
+
+    </div>
+
+    <div class="container" fxLayout="row" fxLayoutAlign="center none">
+      <h2>Comentarios dos compradores</h2>
+    </div>
+
+    <div>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              cometario pegar por variasveis com limite de testo
+            </mat-panel-title>
+            <mat-panel-description>
+              Nome do comprador
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>o mesmo comnetario completo cometario com data e feedback se der pegar por variasveis com limite de testo </p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              cometario pegar por variasveis com limite de testo
+            </mat-panel-title>
+            <mat-panel-description>
+              Nome do comprador
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>o mesmo comnetario completo cometario com data e feedback se der pegar por variasveis com limite de testo </p>
+        </mat-expansion-panel>
+
+        
+      </mat-accordion>
+    </div>
+    <div  class="container" fxLayout="column" fxLayoutAlign="center stretch" >
+      <mat-paginator [length]="100"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Select page">
+      </mat-paginator>
+    </div>
+
+
+    
+  </div>
+
+
+
+</div>

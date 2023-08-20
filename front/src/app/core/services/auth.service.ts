@@ -88,7 +88,7 @@ export class AuthenticationService {
     public sign(payload: { email: string; password: string }): Observable<any> {
 		console.log("1 send login to service");
 		this._headers = {
-			'Authorization': "Basic QVBJX05BTUVfQUNDRVNTOkFQSV9TRUNSRVRfQUNDRVNT",
+			"Authorization": "Basic QVBJX05BTUVfQUNDRVNTOkFQSV9TRUNSRVRfQUNDRVNT",
 			"Content-Type": "application/x-www-form-urlencoded",
 		};
 		const Params = new URLSearchParams();
@@ -100,8 +100,8 @@ export class AuthenticationService {
 
         let options = {
             headers: new HttpHeaders()
-            .set('Content-Type', 'application/x-www-form-urlencoded')
-            .set('Authorization', "Basic QVBJX05BTUVfQUNDRVNTOkFQSV9TRUNSRVRfQUNDRVNT")
+            .set("Content-Type", 'application/x-www-form-urlencoded')
+            .set("Authorization", "Basic QVBJX05BTUVfQUNDRVNTOkFQSV9TRUNSRVRfQUNDRVNT")
         };
 
 

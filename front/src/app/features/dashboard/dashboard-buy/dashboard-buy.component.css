@@ -1,3 +1,14 @@
+
+.part-card-final-pd {
+  min-width: 400px;
+  margin-bottom: 10px;
+}
+
+.part-cart-itens{
+  color: #C7511F;
+  min-height: 100px;
+}
+
 .single-cards {
   margin: 20px 8px 0 0 !important;
 }
@@ -58,4 +69,17 @@
 
 .subtitle-color {
   color: #007185;
+}
+
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
 }

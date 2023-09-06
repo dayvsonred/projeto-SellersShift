@@ -7,11 +7,13 @@ import { NgxLoggerLevel } from 'ngx-logger';
 
 export const environment = {
   production: false,
+  production_mock: true,
   logLevel: NgxLoggerLevel.TRACE,
   serverLogLevel: NgxLoggerLevel.OFF,
   authorization: `/oauth/oauth/token`,
 	link_creat_login: `/core/login`,
 	link_creat_valid_email: `/core/valid/email`,
 	urlBase: `http://localhost:8765`,
+  link_product_get: `/product/product/test`,
 
 };

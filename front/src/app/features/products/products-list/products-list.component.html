@@ -1,0 +1,48 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-content>
+        <h2>Produtos ok</h2>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> N° </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+        
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="sold">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendidos </th>
+            <td mat-cell *matCellDef="let element"> {{element.sold}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="units">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estoque </th>
+            <td mat-cell *matCellDef="let element"> {{element.units}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

@@ -22,6 +22,10 @@ zuul:
       service-id: core
       path: /core/**
       sensitiveHeaders: 'Cookie,Set-Cookie'
+    product:
+      service-id: product
+      path: /product/**
+      sensitiveHeaders: 'Cookie,Set-Cookie'
   add-host-header: true
   add-host-cookie: true
   host:

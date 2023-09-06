@@ -14,8 +14,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'customers',
-    loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule),
+    path: 'products',
+    loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule),
     canActivate: [AuthGuard]
   },
   {
@@ -41,6 +41,16 @@ const appRoutes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'sales',
+    loadChildren: () => import('./features/sales/sales.module').then(m => m.SalesModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'shopping',
+    loadChildren: () => import('./features/shopping/shopping.module').then(m => m.ShoppingModule),
     canActivate: [AuthGuard]
   },
   {

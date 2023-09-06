@@ -9,6 +9,7 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from '../environments/environment';
+import { MyService } from './core/services/my.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,9 @@ import { environment } from '../environments/environment';
     //   level: environment.logLevel,
     //   serverLogLevel: environment.serverLogLevel
     // })
+  ],
+  providers:[
+    MyService
   ],
   bootstrap: [AppComponent]
 })

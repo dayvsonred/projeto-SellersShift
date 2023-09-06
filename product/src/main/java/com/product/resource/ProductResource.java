@@ -22,6 +22,13 @@ public class ProductResource {
     @Autowired
     ProductService productService;
 
+    @GetMapping(value = "/test")
+    public ResponseEntity<Product> test(
+            @RequestHeader(value = "Authorization") String token) {
+            log.info("Product test ok");
+        return ResponseEntity.ok(Product.builder().type("ok").name("produt ok").build());
+    }
+
     @PostMapping
     public ResponseEntity<Product> create(
             @RequestHeader(value = "Authorization") String token,
